@@ -18,7 +18,7 @@ public class DataConfiguration {
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/agendaDois");
 		dataSource.setUsername("root");
-		dataSource.setPassword("senai@126");
+		dataSource.setPassword("P@thaigon#01@a");
 		return dataSource;
 	}
 	

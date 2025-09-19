@@ -36,6 +36,6 @@ public class DeletarController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("erro", "Erro ao excluir funcionário: " + e.getMessage());
         }
-        return "redirect:/cadastro";
+        return "redirect:/";
     }
 }

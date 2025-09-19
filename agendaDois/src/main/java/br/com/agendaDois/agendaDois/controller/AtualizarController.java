@@ -25,26 +25,27 @@ public class AtualizarController {
 		return "atualizar";
 	}
 	
-	// MÉTODO PARA EDITAR SOLICITAÇÃO (GET)
+	// MÉTODO PARA EDITAR SOLICITAÇÃO (GET) 	
 	@GetMapping("/editarAtualizar/{id}")
-	public String editarAtualizar(@PathVariable("id") long id,Model model) {
-		Cadastro cadastro = cadastroRepository.findById(id).orElse(null);
-		if (cadastro != null) {
-			model.addAttribute("cadastro",cadastro);
-			return "editarAtualizar";
-		}
-		return "redirect:/"; 		
+	public String editarAtualizar(@PathVariable("id") long id, Model model) {
+	    Cadastro cadastro = cadastroRepository.findById(id).orElse(null);
+	    if (cadastro != null) {
+	        model.addAttribute("cadastro", cadastro);
+	        return "atualizar"; // nome correto do arquivo HTML
+	    }
+	    return "redirect:/";         
 	}
+
 	
 	//MÉTODO POST COMO FALLBACK PARA ATUALIZAÇÃO
 	@PostMapping("/atualizarAtualizar/{id}")
 	public String atualizarAtualizarPost(@PathVariable("id") long id, Cadastro cadastroAtualizado) {
-		return atualizarAtualizarPost(id, cadastroAtualizado);
+		return atualizarAtualizar(id, cadastroAtualizado);
 	}
 	
 	// MÉTODO PUT PARA ATUALIZAÇÃO
 	@PutMapping("/atualizarAtualizar/{id}")
-	public String atualizarAtualizar(@PathVariable("id") long id, Cadastro cadastroAtualizado, RedirectAttributes redirectAttributes) {
+	public String atualizarAtualizar(@PathVariable("id") long id, Cadastro cadastroAtualizado) {
 		Cadastro cadastroExistente = cadastroRepository.findById(id).orElse(null);
 		
 		if (cadastroExistente != null) {
@@ -56,7 +57,6 @@ public class AtualizarController {
 			
 			cadastroRepository.save(cadastroExistente);
 			
-			redirectAttributes.addFlashAttribute("mensagem", "Cadastro atualizado com sucesso");
 		}
 		return "redirect:/";
 	}
